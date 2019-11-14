@@ -1,0 +1,104 @@
+# depslib dependency file v1.0
+1568291005 source:c:\users\erivnah\documents\utn frgp ayg2\parcial1ayg2\parcial1\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	"Pacientes.h"
+	"Validaciones.h"
+
+1567780686 source:c:\users\erivnah\documents\utn frgp ayg2\parcial1ayg2\parcial1\utyv.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+
+1568299501 c:\users\erivnah\documents\utn frgp ayg2\parcial1ayg2\parcial1\pacientes.h
+	<stdio.h>
+
+1568258860 c:\users\erivnah\documents\utn frgp ayg2\parcial1ayg2\parcial1\validaciones.h
+	"Pacientes.h"
+	<stdio.h>
+
+1568744237 source:c:\users\usuario\desktop\parcial1\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	"Pacientes.h"
+	"Validaciones.h"
+
+1568754173 c:\users\usuario\desktop\parcial1\pacientes.h
+	<stdio.h>
+
+1568258862 c:\users\usuario\desktop\parcial1\validaciones.h
+	"Pacientes.h"
+	<stdio.h>
+
+1568805653 source:c:\users\usuario\desktop\progra 2\parcial1\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	"Pacientes.h"
+	"Validaciones.h"
+
+1568815779 c:\users\usuario\desktop\progra 2\parcial1\pacientes.h
+	<stdio.h>
+
+1568258862 c:\users\usuario\desktop\progra 2\parcial1\validaciones.h
+	"Pacientes.h"
+	<stdio.h>
+
+1569372069 source:c:\users\erivnah\desktop\parcial1v2\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	"Pacientes.h"
+	"Medicos.h"
+	<stdio.h>
+	"Controles.h"
+
+1569381034 c:\users\erivnah\desktop\parcial1v2\pacientes.h
+	<stdio.h>
+
+1568880246 c:\users\erivnah\desktop\parcial1v2\validaciones.h
+	"Pacientes.h"
+	<stdio.h>
+
+1569369620 c:\users\erivnah\desktop\parcial1v2\medicos.h
+
+1569381294 c:\users\erivnah\desktop\parcial1v2\controles.h
+
+1569367518 source:c:\users\zingu\desktop\parcial1v2\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	"Pacientes.h"
+	"Medicos.h"
+	<stdio.h>
+	"Controles.h"
+
+1569475538 c:\users\zingu\desktop\parcial1v2\pacientes.h
+	<stdio.h>
+
+1569474773 c:\users\zingu\desktop\parcial1v2\medicos.h
+
+1569475156 c:\users\zingu\desktop\parcial1v2\controles.h
+
+1573764090 source:c:\users\erivnah\desktop\parcialarendir\main.cpp
+	<iostream>
+	<cstdlib>
+	<windows.h>
+	"Pacientes.h"
+	"Medicos.h"
+	<stdio.h>
+	"Controles.h"
+
+1573766462 c:\users\erivnah\desktop\parcialarendir\pacientes.h
+	"configuracion.h"
+	<stdio.h>
+
+1573739324 c:\users\erivnah\desktop\parcialarendir\medicos.h
+
+1573739324 c:\users\erivnah\desktop\parcialarendir\controles.h
+
+1573766374 c:\users\erivnah\desktop\parcialarendir\configuracion.h
+	"Pacientes.h"
+
