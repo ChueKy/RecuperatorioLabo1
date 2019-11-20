@@ -82,23 +82,22 @@
 
 1569475156 c:\users\zingu\desktop\parcial1v2\controles.h
 
-1573764090 source:c:\users\erivnah\desktop\parcialarendir\main.cpp
+1573768285 source:c:\users\erivnah\desktop\parcialarendir\main.cpp
 	<iostream>
 	<cstdlib>
 	<windows.h>
+	<cstdio>
 	"Pacientes.h"
 	"Medicos.h"
 	<stdio.h>
 	"Controles.h"
-
-1573766462 c:\users\erivnah\desktop\parcialarendir\pacientes.h
 	"configuracion.h"
-	<stdio.h>
+
+1574280475 c:\users\erivnah\desktop\parcialarendir\pacientes.h
 
 1573739324 c:\users\erivnah\desktop\parcialarendir\medicos.h
 
 1573739324 c:\users\erivnah\desktop\parcialarendir\controles.h
 
-1573766374 c:\users\erivnah\desktop\parcialarendir\configuracion.h
-	"Pacientes.h"
+1573770495 c:\users\erivnah\desktop\parcialarendir\configuracion.h
 

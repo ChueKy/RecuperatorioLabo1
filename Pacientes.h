@@ -18,93 +18,6 @@ struct Pacientes
 
 };
 
-bool Recuperar_Paciente ()
-{
-    struct Pacientes p;
-    char tecla = NULL;
-    int dni, pos, x=0, y=7;
-    char opc;
-    FILE *PC;
-    PC = fopen("Pacientes.dat","rb+");
-    if (PC==NULL)
-    {
-        cout << "ERROR! No existe el Archivo.";
-        fclose(PC);
-        return -1;
-    }
-    pos = Buscar_paciente(dni);
-    if (pos == -1)
-    {
-        cout << "No existe el Paciente." << endl;
-        system ("pause");
-        return -1;
-    }
-    fseek(PC, pos*sizeof (Pacientes), 0);
-    fread(&p, sizeof (Pacientes), 1, PC);
-    if (p.estado==true)
-    {
-        cout << "El Paciente ya existe en nuestros registros." << endl;
-        system ("cls");
-    }
-    else
-    {
-        cout << "El Paciente se ha dado de baja. ¿Recuperar?" << endl;
-        cout << "S / N" << endl;
-    }
-    cin >> opc;
-    if (opc == 'S' || opc == 's')
-    {
-        fseek(PC, pos*sizeof (Pacientes), 0);
-        p.estado=true;
-        fwrite(&p, sizeof (Pacientes), 1, PC);
-        fclose(PC);
-        cout << "Paciente Recuperado." << endl;
-        return true;
-    }
-    else if (opc == 'N' || opc == 'n')
-    {
-        cout << "No surgieron cambios en el archivo." << endl;
-        fclose(PC);
-        return true;
-    }
-}
-
-/// Validar Pacientes
-bool  ValidarDni(int  dni){
-//El campo DNI debe ser un número entero positivo y único. Es decir, un valor que no puede
-
-    struct Pacientes reg;
-
-    FILE *p;
-    p=fopen("Pacientes.dat","rb");
-
-    if(p==NULL)
-    {
-
-        //cout<<"Fallo al abrirlo ";
-        return false;
-    }
-
-
-    do
-    {
-        fread(&reg,sizeof(reg),1,p);
-        if(dni==reg.dni)
-        {
-
-            Recuperar_Paciente(dni);
-            return true;
-
-        }
-
-    }
-    while(!feof(p));
-
-    fclose(p);
-}
-
-
-
 bool validarCadena(char xCaracteres[]){
 
     if(strlen(xCaracteres)==0)
@@ -159,6 +72,156 @@ bool ValidarFecha(int  d, int m, int a){
 
 }
 
+ int Buscar_paciente(int dni){
+    FILE *PC;
+    Pacientes p;
+    int pos=0;
+    PC = fopen("Pacientes.dat","rb");
+    if ( PC == NULL){
+        return -1;
+    }
+    while (fread(&p, sizeof (Pacientes), 1, PC))
+    {
+        if (dni==p.dni){
+            fclose(PC);
+            return pos;
+        }
+        pos++;
+    }
+    fclose(PC);
+    return -1;
+}
+
+int  Recuperar_Paciente (int dni)
+{
+    struct Pacientes p;
+    char tecla = NULL;
+    int      pos, x=0, y=7;
+    char opc;
+    FILE *PC;
+    PC = fopen("Pacientes.dat","rb+");
+    if (PC==NULL)
+    {
+        cout << "ERROR! No existe el Archivo.";
+        fclose(PC);
+        return  1;
+    }
+    pos = Buscar_paciente(dni);
+    if (pos == -1)
+    {
+        cout << "No existe el Paciente." << endl;
+        system ("pause");
+        return 1;
+    }
+    fseek(PC, pos*sizeof (Pacientes), 0);
+    fread(&p, sizeof (Pacientes), 1, PC);
+    if (p.estado==true)
+    {
+        cout << "El Paciente ya existe en nuestros registros." << endl;
+        system ("cls");
+
+    }
+    else
+    {
+        cout << "El Paciente se ha dado de baja. ¿Recuperar?" << endl;
+        cout << "S / N" << endl;
+    }
+    cin >> opc;
+    if (opc == 'S' || opc == 's')
+    {
+        fseek(PC, pos*sizeof (Pacientes), 0);
+        p.estado=true;
+        fwrite(&p, sizeof (Pacientes), 1, PC);
+        fclose(PC);
+        cout << "Paciente Recuperado." << endl;
+        return 2;
+    }
+    else if (opc == 'N' || opc == 'n')
+    {
+        cout << "No surgieron cambios en el archivo." << endl;
+        fclose(PC);
+        return 3;
+    }
+}
+
+/// Validar Pacientes
+bool  ValidarDni(int  dni){
+//El campo DNI debe ser un número entero positivo y único. Es decir, un valor que no puede
+
+    struct Pacientes reg;
+
+    FILE *p;
+    p=fopen("Pacientes.dat","rb");
+
+    if(p==NULL)
+    {
+
+        //cout<<"Fallo al abrirlo ";
+        return false;
+    }
+
+    do
+    {
+        fread(&reg,sizeof(reg),1,p);
+        if(dni==reg.dni)
+        {
+            fseek(p,0,0);
+            fclose(p);
+            int recuperar= Recuperar_Paciente(dni);
+
+            if(recuperar==2){
+
+            return true;
+
+            }
+            if(recuperar==3){
+                return false;
+            }
+
+        }
+
+
+
+    }
+    while(!feof(p));
+
+    fclose(p);
+}
+
+
+
+ void grabar_Paciente_Modificado(int pos){
+    struct Pacientes p;
+    FILE *PC;
+    PC = fopen("Pacientes.dat","rb+");
+    if (PC==NULL)
+    {
+        cout << "No existe el archivo.";
+        return;
+    }
+    fseek(PC, sizeof (Pacientes) * pos, 0);
+    fread(&p, sizeof (Pacientes), 1, PC);
+    fseek(PC, sizeof (Pacientes) * pos, 0);
+
+    if (p.estado==true)
+    {
+
+        cout << "Ingrese obra social: ";
+        cin >> p.oSocial;
+        while (p.oSocial<1 || p.oSocial>50)
+        {
+            cout << "REINGRESE OBRA SOCIAL: ";
+            cin >> p.oSocial;
+        }
+    }
+    else
+    {
+        cout << "NO EXISTE EL PACIENTE ";
+    }
+    fwrite(&p, sizeof (Pacientes), 1, PC);
+    fclose(PC);
+}
+
 ///Funcion Cargar 1 paciente.
 void Cargar1Paciente(){
     system ("color 0c");
@@ -181,12 +244,13 @@ void Cargar1Paciente(){
                 if(reg.dni>0)
                 {
                     validar=ValidarDni(reg.dni);
+
                 }
             }
             while(validar==true);
             cout<<"Dni ingresado correctamente \n";
 
-            if(Recuperar_Paciente==false)
+            if(Recuperar_Paciente==false){
 
             do
             {
@@ -234,12 +298,8 @@ void Cargar1Paciente(){
             while(ValidarNumero(reg.oSocial,vInicial,vFinal)==true);
             cout<<"Obra Social Ingresado Correctamente\n ";
             reg.estado= true;
-        }
-        i++;
 
-    }
-
-     FILE *p;
+             FILE *p;
 
             ///p=fopen("C:/Users/erivnah/Documents/Utn Frgp ayg2/Parcial1Ayg2/Parcial1/filepacientes","ab+");
             p=fopen("Pacientes.dat","ab+");
@@ -250,9 +310,18 @@ void Cargar1Paciente(){
 
             fwrite(&reg,sizeof(Pacientes),1,p);
             fclose(p);
+            }
+        }
+        i++;
+
+    }
+
+
+
             system("pause");
 
 }
+
 void MostrarPaciente(Pacientes a){
 
 
@@ -298,58 +367,10 @@ fclose(p);
 
 }
 
- void grabar_Paciente_Modificado(int pos){
-    struct Pacientes p;
-    FILE *PC;
-    PC = fopen("Pacientes.dat","rb+");
-    if (PC==NULL)
-    {
-        cout << "No existe el archivo.";
-        return;
-    }
-    fseek(PC, sizeof (Pacientes) * pos, 0);
-    fread(&p, sizeof (Pacientes), 1, PC);
-    fseek(PC, sizeof (Pacientes) * pos, 0);
-
-    if (p.estado==true)
-    {
-
-        cout << "Ingrese obra social: ";
-        cin >> p.oSocial;
-        while (p.oSocial<1 || p.oSocial>50)
-        {
-            cout << "REINGRESE OBRA SOCIAL: ";
-            cin >> p.oSocial;
-        }
-    }
-    else
-    {
-        cout << "NO EXISTE EL PACIENTE ";
-    }
-    fwrite(&p, sizeof (Pacientes), 1, PC);
-    fclose(PC);
-}
 
 
- int Buscar_paciente(int dni){
-    FILE *PC;
-    Pacientes p;
-    int pos=0;
-    PC = fopen("Pacientes.dat","rb");
-    if ( PC == NULL){
-        return -1;
-    }
-    while (fread(&p, sizeof (Pacientes), 1, PC))
-    {
-        if (dni==p.dni){
-            fclose(PC);
-            return pos;
-        }
-        pos++;
-    }
-    fclose(PC);
-    return -1;
-}
+
+
 void Modificar_Paciente (){
     int dni, pos;
     cout << "INGRESE DNI PARA MODIFICAR PACIENTE: ";

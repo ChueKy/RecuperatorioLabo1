@@ -1,7 +1,7 @@
-#fndef CONFIGURACION_H_INCLUDED
+#ifndef CONFIGURACION_H_INCLUDED
 #define CONFIGURACION_H_INCLUDED
 
-/*bool Recuperar_Paciente ()
+bool Recuperar_Paciente ()
 {
     struct Pacientes p;
     char tecla = NULL;
@@ -84,7 +84,7 @@ void Backup_Pacientes ()
     fclose(F2);
     fclose(F);
 }
-*/
+
 
 void Backup_Medicos ()
 {
@@ -118,10 +118,8 @@ void Backup_Medicos ()
 }
 
 
-Backup_Controles ()
+/*Backup_Controles ()
 {
-
-    struct Controles c;
 
     struct Controles c;
 
@@ -263,9 +261,9 @@ void Restaurar_Backup()
     Restaurar_Medicos();
     Restaurar_Controles();
 }
-
-void main_Configuraciones(){
-
+*/
+int main_Configuraciones(){
+int opc;
 while(true){
 
         system("cls");
@@ -330,4 +328,4 @@ while(true){
 
 
 #endif // CONFIGURACION_H_INCLUDED
-*/
+

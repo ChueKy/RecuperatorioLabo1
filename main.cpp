@@ -1,6 +1,7 @@
 #include <iostream>
 #include<cstdlib>
 #include<windows.h>
+#include<cstdio>
 using namespace std;
 #include"Pacientes.h"
 #include"Medicos.h"
